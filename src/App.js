@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import ValidComp from './ValidComp/ValidComp'
 
-function App() {
-  return (
+class App extends Component{
+
+  state = {
+    inputUser : ""
+  }
+ 
+  inputChangeHandler = (event) =>
+  {
+    let inputValue = this.state.inputUser;
+    inputValue = event.target.value;
+
+    this.setState({inputUser : inputValue})
+    
+  }
+
+  render () {
+    //render method always be called each time react needs to render something
+
+
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type="text" onChange= {(event) => this.inputChangeHandler(event)} value ={this.state.inputUser}></input>
+      <ValidComp input={this.state.inputUser}/>
     </div>
-  );
+  ) 
+}
 }
 
 export default App;
